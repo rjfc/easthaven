@@ -3,6 +3,10 @@ import java.util.*;
 
 public class PileClass extends DeckClass
 {
+    public booleanIsPointInside (int x, int y) {
+	// check if point is inside face up cards
+    }
+
     public void draw (Graphics g)
     {
 	for (int i = 0 ; i < deck.size () ; i++)
