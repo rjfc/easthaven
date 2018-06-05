@@ -64,17 +64,17 @@ public class Easthaven extends Applet implements MouseMotionListener
     {
 	bufferGraphics.clearRect (0, 0, dim.width, dim.width);
 	dealDeck.draw (bufferGraphics);
-	for (int i = 0 ; i < tableau.length ; i++)
-	{
-	    tableau [i].draw (bufferGraphics);
-	}
+      
 	for (int i = 0 ; i < foundations.length ; i++)
 	{
 	    foundations [i].draw (bufferGraphics);
 	}
 
 	// CHANGE THIS TO DRAW WHATEVER NEEDS TO MOVE bufferGraphics.fillRect (curX, curY, 20, 20);
-	bufferGraphics.fillRect (curX, curY, 20, 20);
+	 for (int i = 0 ; i < tableau.length ; i++)
+	{
+	    tableau [i].draw (bufferGraphics);
+	}
 	g.drawImage (offscreen, 0, 0, this);
     }
 
@@ -87,29 +87,32 @@ public class Easthaven extends Applet implements MouseMotionListener
 
     public void mousePressed (MouseEvent e)
     {
-	if (d1.isPointInside (e.getX (), e.getY ()))
-	{
-	    textFieldAction.setText ("Pressed");
-	    OKtoMove = true;
-	    d1.setCentre (e.getX (), e.getY ());
-	    d1.draw (g);
-	    repaint ();
-	}
+       
     }
 
 
     // Save the current mouse position to paint a rectangle there.
     // and request a repaint()
-    public void mouseMoved (MouseEvent evt)
+    public void mouseMoved (MouseEvent e)
     {
-	curX = evt.getX ();
-	curY = evt.getY ();
+	curX = e.getX ();
+	curY = e.getY ();
 	repaint ();
     }
 
 
     // The necessary methods.
-    public void mouseDragged (MouseEvent evt)
+    public void mouseDragged (MouseEvent e)
     {
+     for (int i = 0 ; i < tableau.length ; i++)
+	{
+	    if (tableau [i].isPointInside (e.getX (), e.getY ()))
+	    {
+		// todo: draw multiple cards
+		((CardClass)tableau [i].getTopCard ()).setCentre (e.getX (), e.getY ());
+		System.out.println(e.getX () + " " +  e.getY ());
+		repaint ();
+	    }
+	}
     }
 } // Easthaven class

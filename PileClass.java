@@ -3,9 +3,28 @@ import java.util.*;
 
 public class PileClass extends DeckClass
 {
-    public booleanIsPointInside (int x, int y) {
-	// check if point is inside face up cards
+    public int numberOfFaceUpCards ()
+    {
+	for (int i = 0 ; i < deck.size () ; i++)
+	{
+	    if (((CardClass) deck.get (i)).getSide () == 1)
+	    {
+		return getDeckLength () - i;
+	    }
+	}
+	return 0;
     }
+
+
+    public boolean isPointInside (int x, int y)
+    {
+	// check if point is inside face up cards
+	if (x >= iCentreX - getWidth () / 2 && x <= iCentreX + getWidth () / 2 && y >= (iCentreY + deck.size() - (numberOfFaceUpCards() - 1) * 15) && y <= iCentreY + (deck.size() - 1) * 15) {
+	    return true;
+	}
+	return false;
+    }
+
 
     public void draw (Graphics g)
     {
@@ -25,6 +44,8 @@ public class PileClass extends DeckClass
 
     public void erase (Graphics g)
     {
-       // TODOs
+	// TODOs
     }
 }
+
+
