@@ -6,10 +6,10 @@ public class CardClass extends ShapeClass
     int suit, value;
     boolean isFaceUp = true;
 
-    static Font f1 = new Font ("SanSerif", Font.BOLD, 18);
-    static Font f2 = new Font ("SanSerif", Font.BOLD, 24);
-    static Font f3 = new Font ("SanSerif", Font.BOLD, 28);
-    static Font f4 = new Font ("SanSerif", Font.BOLD, 32);
+    static Font f1 = new Font ("SanSerif", Font.BOLD, 14);
+    static Font f2 = new Font ("SanSerif", Font.BOLD, 18);
+    static Font f3 = new Font ("SanSerif", Font.BOLD, 22);
+    static Font f4 = new Font ("SanSerif", Font.BOLD, 24);
 
     public void setSuit (int newSuit)
     {
@@ -133,13 +133,14 @@ public class CardClass extends ShapeClass
 	    {
 		if (value == 10)
 		{
-		    g.drawString (Integer.toString (value), iCentreX + (int) (iWidth * 0.03), iCentreY + (int) (iHeight * 0.45));
+		    g.drawString (Integer.toString (value), iCentreX + (int) (iWidth * 0.1), iCentreY + (int) (iHeight * 0.45));
+		    g.drawString (Integer.toString (value), iCentreX - (int) (iWidth * 0.45), iCentreY - (int) (iHeight * 0.275));
 		}
 		else
 		{
-		    g.drawString (Integer.toString (value), iCentreX + (int) (iWidth * 0.225), iCentreY + (int) (iHeight * 0.45));
+		    g.drawString (Integer.toString (value), iCentreX + (int) (iWidth * 0.245), iCentreY + (int) (iHeight * 0.45));
+		    g.drawString (Integer.toString (value), iCentreX - (int) (iWidth * 0.45), iCentreY - (int) (iHeight * 0.275));
 		}
-		g.drawString (Integer.toString (value), iCentreX - (int) (iWidth * 0.45), iCentreY - (int) (iHeight * 0.255));
 	    }
 	    else
 	    {
@@ -159,8 +160,8 @@ public class CardClass extends ShapeClass
 			displayValue = "K";
 			break;
 		}
-		g.drawString (displayValue, iCentreX - (int) (iWidth * 0.45), iCentreY - (int) (iHeight * 0.255));
-		g.drawString (displayValue, iCentreX + (int) (iWidth * 0.19), iCentreY + (int) (iHeight * 0.45));
+		g.drawString (displayValue, iCentreX - (int) (iWidth * 0.45), iCentreY - (int) (iHeight * 0.275));
+		g.drawString (displayValue, iCentreX + (int) (iWidth * 0.21), iCentreY + (int) (iHeight * 0.45));
 	    }
 	}
 	else

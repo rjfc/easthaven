@@ -58,9 +58,14 @@ public class Easthaven extends Applet implements MouseListener, MouseMotionListe
 	for (int i = 0 ; i < tableauCards ; i++)
 	{
 	    tableau [i % tableau.length].addCard ((CardClass) dealDeck.getTopCard ());
+	    ((CardClass)tableau [i % tableau.length].getTopCard()).setSide(0);
 	    dealDeck.removeTopCard ();
 	}
 
+	for (int i = 0 ; i < 7 ; i++)
+	{
+	    ((CardClass)tableau [i].getTopCard()).setSide(1);
+	}
 	dealDeck.setSize ("lg");
 	dealDeck.setCentre (100, 100);
     }
@@ -95,7 +100,16 @@ public class Easthaven extends Applet implements MouseListener, MouseMotionListe
 
     public void mouseReleased (MouseEvent e)
     {
-	dragging = false;
+	for (int i = 0 ; i < tableau.length ; i++)
+	{
+	    if (tableau [i].isPointInsideFaceUpCards (e.getX (), e.getY ()) && dragging)
+	    {
+		tableau [i].addCard((CardClass) draggingCard.getTopCard());
+		draggingCard.removeTopCard();
+		dragging = false;
+	    }
+	}
+	repaint();
     }
 
 
