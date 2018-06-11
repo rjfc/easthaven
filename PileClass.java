@@ -24,12 +24,12 @@ public class PileClass extends DeckClass
 
 	for (int i = 0 ; i < deck.size () ; i++)
 	{
-	    if (!((CardClass)(deck.get (i))).isPointInside (x, y))
+	    if (((CardClass)(deck.get (i))).isPointInside (x, y))
 	    {
-		return false;
+		return true;
 	    }
 	}
-	return true;
+	return false;
     }
 
 

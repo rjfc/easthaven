@@ -3,6 +3,20 @@ import java.util.*;
 
 public class DraggingCardClass extends DeckClass
 {
+    private int originalPile;
+
+    public void setOriginalPile (int pile)
+    {
+	originalPile = pile;
+    }
+
+
+    public int getOriginalPile ()
+    {
+	return originalPile;
+    }
+
+
     public void draw (Graphics g)
     {
 	if (getDeckLength () > 0)

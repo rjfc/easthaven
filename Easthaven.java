@@ -109,6 +109,8 @@ public class Easthaven extends Applet implements MouseListener, MouseMotionListe
 		dragging = false;
 	    }
 	}
+	
+	((CardClass)tableau[draggingCard.getOriginalPile()].getTopCard()).setSide(1);
 	repaint();
     }
 
@@ -147,6 +149,7 @@ public class Easthaven extends Applet implements MouseListener, MouseMotionListe
 		dragging = true;
 		draggingCard.setCentre (e.getX (), e.getY ());
 		draggingCard.addCard ((CardClass) tableau [i].getTopCard ());
+		draggingCard.setOriginalPile (i);
 		tableau [i].removeTopCard ();
 	    }
 	}

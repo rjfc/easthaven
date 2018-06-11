@@ -65,7 +65,7 @@ public abstract class ShapeClass
 
     public boolean isPointInside (int x, int y)
     {
-	 if (x > iCentreX - iWidth / 2 && x < iCentreX + iWidth / 2 && y > iCentreY - iHeight / 2 && y < iCentreY + iHeight / 2)
+	 if (x >= iCentreX - iWidth / 2 && x <= iCentreX + iWidth / 2 && y >= iCentreY - iHeight / 2 && y <= iCentreY + iHeight / 2)
 	{
 	    return true;
 	}
