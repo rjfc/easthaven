@@ -5,6 +5,12 @@ public class FoundationClass extends DeckClass
 {
     int suit;
 
+    public int getSuit ()
+    {
+	return suit;
+    }
+
+
     public void setSuit (int newSuit)
     {
 	suit = newSuit;
