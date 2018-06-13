@@ -71,6 +71,16 @@ public class CardClass extends ShapeClass
     }
 
 
+    public boolean isPointInsideTab (int x, int y)
+    {
+	if (x >= iCentreX - iWidth / 2 && x <= iCentreX + iWidth / 2 && y >= iCentreY - iHeight / 2 && y <= iCentreY - iHeight/2 + 25)
+	{
+	    return true;
+	}
+	return false;
+    }
+
+
     public void draw (Graphics g)
     {
 	if (isFaceUp)

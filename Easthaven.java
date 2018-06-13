@@ -124,10 +124,10 @@ public class Easthaven extends Applet implements MouseListener, MouseMotionListe
 		// or foundation is empty
 		if (foundations [i].isPointInside (e.getX (), e.getY ()) && draggingCard.getDeckLength () == 1
 			&& ((foundations [i].getDeckLength () == 0 && ((CardClass) draggingCard.getTopCard ())
-			    .getValue () == 1) || foundations [i].getDeckLength () > 0 && ((CardClass) foundations [i].getTopCard ())
+				.getValue () == 1) || foundations [i].getDeckLength () > 0 && ((CardClass) foundations [i].getTopCard ())
 			    .getValue () == ((CardClass) draggingCard.getTopCard ()).getValue () - 1)
-			&& foundations[i].getSuit ()
-			    == ((CardClass) draggingCard.getTopCard ()).getSuit ())
+			&& foundations [i].getSuit ()
+			== ((CardClass) draggingCard.getTopCard ()).getSuit ())
 		{
 		    foundations [i].addCard ((CardClass) draggingCard.getTopCard ());
 		    draggingCard.removeTopCard ();
@@ -190,37 +190,45 @@ public class Easthaven extends Applet implements MouseListener, MouseMotionListe
 
     public void mousePressed (MouseEvent e)
     {
-	// If user clicks on piles
-	for (int i = 0 ; i < tableau.length ; i++)
+	// Make sure only left mouse button is allowed
+	if (e.getButton () == 1)
 	{
-	    if (tableau [i].isPointInsideFaceUpCards (e.getX (), e.getY ()))
+	    // If user clicks on piles
+	    for (int i = 0 ; i < tableau.length ; i++)
 	    {
-		draggingCard.setCentre (e.getX (), e.getY ());
-		draggingCard.addCard ((CardClass) tableau [i].getTopCard ());
-		draggingCard.setOriginalPile (i);
-		tableau [i].removeTopCard ();
-	    }
-	}
-	// If user clicks on deal deck
-	if (dealDeck.getDeckLength () > 0 && ((CardClass) dealDeck.getTopCard ()).isPointInside (e.getX (), e.getY ()))
-	{
-	    if (dealDeck.getDeckLength () >= tableau.length)
-	    {
-		for (int i = 0 ; i < tableau.length ; i++)
+		if (tableau [i].isPointInsideFaceUpCards (e.getX (), e.getY ()))
 		{
-		    ((CardClass) dealDeck.getTopCard ()).setSide (1);
-		    draggingCard.addCard ((CardClass) dealDeck.getTopCard ());
-		    dealDeck.removeTopCard ();
+		    System.out.println (tableau [i].cardTabClicked (e.getX (), e.getY ()) + 1);
+	       /*     for (int j = tableau [i].cardClicked (e.getX (), e.getY ()) ; j < tableau [i].getDeckLength () - 1 ; j++)
+		    {
+			draggingCard.addCard ((CardClass) tableau [i].getCardAt (j));
+		    }
+		    draggingCard.setCentre (e.getX (), e.getY ());
+		    draggingCard.setOriginalPile (i);
+		    tableau [i].removeTopCard ();*/
 		}
 	    }
-	    else
+	    // If user clicks on deal deck
+	    if (dealDeck.getDeckLength () > 0 && ((CardClass) dealDeck.getTopCard ()).isPointInside (e.getX (), e.getY ()))
 	    {
-		tempDeckLength = dealDeck.getDeckLength ();
-		for (int i = 0 ; i < tempDeckLength ; i++)
+		if (dealDeck.getDeckLength () >= tableau.length)
 		{
-		    ((CardClass) dealDeck.getTopCard ()).setSide (1);
-		    draggingCard.addCard ((CardClass) dealDeck.getTopCard ());
-		    dealDeck.removeTopCard ();
+		    for (int i = 0 ; i < tableau.length ; i++)
+		    {
+			((CardClass) dealDeck.getTopCard ()).setSide (1);
+			draggingCard.addCard ((CardClass) dealDeck.getTopCard ());
+			dealDeck.removeTopCard ();
+		    }
+		}
+		else
+		{
+		    tempDeckLength = dealDeck.getDeckLength ();
+		    for (int i = 0 ; i < tempDeckLength ; i++)
+		    {
+			((CardClass) dealDeck.getTopCard ()).setSide (1);
+			draggingCard.addCard ((CardClass) dealDeck.getTopCard ());
+			dealDeck.removeTopCard ();
+		    }
 		}
 	    }
 	}
