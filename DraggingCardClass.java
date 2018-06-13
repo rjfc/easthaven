@@ -19,10 +19,17 @@ public class DraggingCardClass extends DeckClass
 
     public void draw (Graphics g)
     {
-	if (getDeckLength () > 0)
+	/*  if (getDeckLength () > 0)
+	  {
+	      CardClass c1 = (CardClass) getTopCard ();
+	      c1.setCentre (iCentreX, iCentreY);
+	      c1.draw (g);
+	  }*/
+	for (int i = 0 ; i < deck.size () ; i++)
 	{
-	    CardClass c1 = (CardClass) getTopCard ();
-	    c1.setCentre (iCentreX, iCentreY);
+	    CardClass c1 = (CardClass) deck.get (i);
+	    c1.setSize (size);
+	    c1.setCentre (iCentreX, iCentreY + i * 25);
 	    c1.draw (g);
 	}
     }
