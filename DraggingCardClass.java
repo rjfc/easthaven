@@ -17,6 +17,26 @@ public class DraggingCardClass extends DeckClass
     }
 
 
+    public boolean isInOrder ()
+    {
+	if (deck.size () > 0)
+	{
+	    for (int i = 1 ; i < deck.size () ; i++)
+	    {
+		if (((CardClass) (deck.get (i))).getValue () != ((CardClass) (deck.get (i - 1))).getValue () - 1)
+		{
+		    return false;
+		}
+	    }
+	}
+	else
+	{
+	    return false;
+	}
+	return true;
+    }
+
+
     public void draw (Graphics g)
     {
 	/*  if (getDeckLength () > 0)
@@ -34,3 +54,5 @@ public class DraggingCardClass extends DeckClass
 	}
     }
 }
+
+
