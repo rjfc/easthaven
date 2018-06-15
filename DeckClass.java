@@ -2,9 +2,12 @@ import java.awt.*;
 import java.util.*;
 
 public class DeckClass extends ShapeClass {
-	Vector deck = new Vector();
-	String size;
-
+	
+	// Private variables
+	protected Vector deck = new Vector();
+	private String size;
+	
+	// Set size of card
 	public void setSize(String newSize) {
 		size = newSize;
 		if (size.equals("sm")) {
@@ -19,10 +22,12 @@ public class DeckClass extends ShapeClass {
 		setWidth((int) (getHeight() * 0.7));
 	}
 
+	// Add a card to end of deck
 	public void addCard(CardClass newCard) {
 		deck.addElement(newCard);
 	}
 
+	// Add a card in a certain position of deck
 	public void addCard(CardClass newCard, int pos) {
 		Object tempCard1, tempCard2;
 		deck.setSize(deck.size() + 1);
@@ -74,10 +79,16 @@ public class DeckClass extends ShapeClass {
 		return deck.get(index);
 	}
 
+	// Amount of cards in deck
 	public int getDeckLength() {
 		return deck.size();
 	}
 
+	// Physical size
+	public String getDeckSize () {
+		return size;
+	}
+	
 	public boolean shuffle() {
 		if (deck.size() > 0) {
 			Collections.shuffle(deck);
@@ -87,7 +98,9 @@ public class DeckClass extends ShapeClass {
 		}
 	}
 
+	// Initialize the standard 52 card deck
 	public void standardDeck() {
+		deck.clear();
 		CardClass c1;
 		for (int i = 0; i < 4; i++) {
 			for (int j = 1; j < 14; j++) {
@@ -99,7 +112,7 @@ public class DeckClass extends ShapeClass {
 		}
 	}
 
-	public void draw(Graphics g) {
+	public void draw (Graphics g) {
 		for (int i = 0; i < deck.size(); i++) {
 			CardClass c1 = (CardClass) deck.get(i);
 			c1.setSize(size);
@@ -109,7 +122,7 @@ public class DeckClass extends ShapeClass {
 		}
 	}
 
-	public void erase(Graphics g) {
+	public void erase (Graphics g) {
 		Color cOldColor = iColour;
 		g.setColor(Color.white);
 		g.fillRect(iCentreX - iWidth / 2, iCentreY - iHeight / 2, iWidth + 1, iHeight + 1);
